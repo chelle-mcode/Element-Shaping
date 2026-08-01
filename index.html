@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Project 6 DIG200 </title>
+
+</head>
+
+<body>
+    <canvas id="gameCanvas" width="1136" height="640">
+        Your browser does not support canvas.
+    </canvas>
+    <script>
+        var elleCanvas = document.getElementById("gameCanvas");
+        var ctx = elleCanvas.getContext("2d");
+
+        const butterflyX = Math.random() * 650 + 50;
+        const butterflyY = Math.random() * 180 + 50;
+
+        // background 
+        // var obstacle = new Image();
+        // obstacle.src = "img/bikinibottom.jpg";
+        // ctx.drawImage(obstacle, 0, 0, elleCanvas.width, elleCanvas.height);
+
+
+        ctx.fillStyle = "#87CEEB";
+        ctx.fillStyle.src = "img/bikinibottom.jpg";
+        ctx.fillRect(0, 0, elleCanvas.width, elleCanvas.height);
+
+        // quadratic curve for the curve of the water
+        ctx.beginPath();
+        ctx.moveTo(0, 400);
+        ctx.quadraticCurveTo(200, 300, 400, 400);
+        ctx.quadraticCurveTo(600, 500, 800, 400);
+        ctx.quadraticCurveTo(880, 770, 9000, 890);
+        ctx.lineTo(1136, 640);
+        ctx.lineTo(0, 640);
+        ctx.closePath();
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+        ctx.fillStyle = "darkblue";
+        ctx.fill();
+
+
+
+
+
+
+        // tornado
+        ctx.beginPath();
+
+        ctx.moveTo(100, 100);
+
+        // Top loop curving to the right
+        ctx.bezierCurveTo(150, 80, 250, 80, 300, 100);
+        ctx.bezierCurveTo(250, 150, 200, 150, 140, 200);
+        ctx.bezierCurveTo(180, 240, 220, 240, 260, 280);
+        ctx.bezierCurveTo(220, 320, 190, 320, 170, 360);
+        ctx.bezierCurveTo(180, 390, 190, 410, 200, 440);
+
+        // Style the silhouette line
+        ctx.strokeStyle = '#7a828a';
+        ctx.lineWidth = 4;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+
+        // sun circle
+        ctx.beginPath();
+        ctx.arc(850, 145, 95, 0, Math.PI * 2);
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+
+        // water dimension around the lighthouse where pov is standing
+        ctx.beginPath();
+        ctx.moveTo(800, 550);
+        ctx.lineTo(800, 400);
+        ctx.lineTo(110, 640);
+        ctx.lineTo(1100, 550);
+        ctx.closePath();
+        ctx.fillStyle = "blue";
+        ctx.fill();
+
+        // cliff covering around 40 percent of bottom right of the canvas
+        ctx.beginPath();
+        ctx.moveTo(950, 450);
+        ctx.lineTo(1100, 430);
+        ctx.lineTo(1136, 640);
+        ctx.lineTo(10, 640);
+        ctx.closePath();
+        ctx.fillStyle = "#D6B588";
+        ctx.fill();
+
+
+
+        // shape drawn with lines for lighthouse, red triangle at top of lighthouse
+        ctx.beginPath();
+        ctx.moveTo(900, 550);
+        ctx.lineTo(900, 200);
+        ctx.lineTo(1050, 200);
+        ctx.lineTo(1050, 550);
+        ctx.closePath();
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.fill();
+
+
+        // grass
+        ctx.fillStyle = "green";
+
+        // image
+        const butterfly = new Image();
+        butterfly.src = "img/btterflyaction.jpg";
+
+        butterfly.onload = function () {
+            ctx.drawImage(
+                butterfly,
+                butterflyX,
+                butterflyY,
+                185,
+                68
+            );
+        };
+
+        elleCanvas.addEventListener("click", function () {
+            alert("Time went backwards!!!");
+        });
+
+
+    </script>
+</body>
+
+</html>
